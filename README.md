@@ -72,7 +72,7 @@ URI - [http://project-beta-inventory-api-1:8000/automobiles/](http://project-bet
 
 ### Service:
 Microservice that handles service scheduling, management, and personell tracking.<br/>
-URI - [localhost:8090/service](localhost:8090/service)
+URI - [http://localhost:8090/service](http://localhost:8090/service)
 
 ### DB Structure:
 
@@ -112,7 +112,7 @@ URI - [localhost:8090/service](localhost:8090/service)
 
 ### Sales:
 Microservice that handles automobile sales, and inventory changes<br/>
-URI - [localhost:8080/sales](localhost:8080/sales)
+URI - [http://localhost:8080/sales](http://localhost:8080/sales)
 
 ### DB Structure:
 
