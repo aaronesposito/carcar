@@ -1,6 +1,6 @@
-# CarCar
+# Limitless Automotive
 
-CarCar is an application for tracking inventory, sales, and vehicle service appointments at a car dealership.
+Limitless Automotive is an application for tracking inventory, sales, and vehicle service appointments at a car dealership.
 
 Team:
 
@@ -31,7 +31,7 @@ docker-compose up
 
 ## Design
 
-CarCar is made up of 3 microservices
+Limitless Automotive is made up of 3 microservices
 
 - **Inventory**
 - **Service**
@@ -41,19 +41,18 @@ CarCar is made up of 3 microservices
 
 ## Integration - How we put the "team" in "team"
 
-Our service and sales domains work together with our Wardrobe domain to make everything here at CarCar possible.
+Our service and sales domains work together with our inventory domain to make everything here at Limitless Automotive possible.
 
 How this all starts is at our inventory domain. We keep a record of automobiles that are available at the dealership or have been sold by the dealership. Our sales and service microservices pull vehicle information from the inventory service, using a **poller**, which talks to the inventory domain to keep track of autmobiles available for sale and automobiles that have been sold by the dealership.
 
 
-## Accessing Endpoints to Send and View Data: Access Through Insomnia & Your Browser
+# Endpoints
 
-### Inventory:
+## Inventory:
 
-Manufacturers:
+### Manufacturers:
 | Action | Method | URL
 | ----------- | ----------- | ----------- |
------------------------------------------------------------------
 | List manufacturers | GET | http://localhost:8100/api/manufacturers/ |
 | Create a manufacturer | POST | http://localhost:8100/api/manufacturers/ |
 | Get a specific manufacturer | GET | http://localhost:8100/api/manufacturers/:id/ |
@@ -61,15 +60,13 @@ Manufacturers:
 | Delete a specific location | DELETE | http://localhost:8100/api/manufacturers/:id/|
 
 
-JSON body to send data:
-
-Create and Update a manufacturer (SEND THIS JSON BODY):
+Create a manufacturer:
 ```
 {
   "name": "Chrysler"
 }
 ```
-Create View and Update a manufacturer (SEND THIS JSON BODY):
+Update a manufacturer:
 ```
 {
   "href": "/api/manufacturers/1/",
@@ -77,7 +74,15 @@ Create View and Update a manufacturer (SEND THIS JSON BODY):
   "name": "Chrysler"
 }
 ```
-Getting a list of manufacturers return value:
+View a single manufacturer:
+```
+{
+  "href": "/api/manufacturers/1/",
+  "id": 1,
+  "name": "Chrysler"
+}
+```
+List all manufacturers:
 ```
 {
   "manufacturers": [
@@ -88,11 +93,10 @@ Getting a list of manufacturers return value:
     }
   ]
 }
-
-Vehicle Models:
+```
+### Vehicle Models:
 | Action | Method | URL
 | ----------- | ----------- | ----------- |
------------------------------------------------------------------
 | List models | GET | http://localhost:8100/api/models/ |
 | Create a model | POST | http://localhost:8100/api/models/ |
 | Get a specific model | GET | http://localhost:8100/api/models/:id/ |
@@ -100,9 +104,7 @@ Vehicle Models:
 | Delete a specific location | DELETE | http://localhost:8100/api/models/:id/ |
 
 
-JSON body to send data:
-
-Create a model (SEND THIS JSON BODY):
+Create a model:
 ```
 {
   "name": "Sebring",
@@ -110,14 +112,14 @@ Create a model (SEND THIS JSON BODY):
   "manufacturer_id": 1
 }
 ```
-Update a model (SEND THIS JSON BODY): *Vehicle manufacturer can not be changed after creation
+Update a model: <em>Vehicle manufacturer can not be changed after creation</em>
 ```
 {
   "name": "Sebring",
   "picture_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Chrysler_Sebring_front_20090302.jpg/320px-Chrysler_Sebring_front_20090302.jpg"
 }
 ```
-Return value for details on a specific model:
+View a specific model:
 ```
 {
   "href": "/api/models/1/",
@@ -131,7 +133,7 @@ Return value for details on a specific model:
   }
 }
 ```
-Return value for a list of models:
+List all models:
 ```
 {
   "models": [
@@ -150,10 +152,9 @@ Return value for a list of models:
 }
 ```
 
-Automobiles:
-| Action | Method | URL
-| ----------- | ----------- | ----------- |
------------------------------------------------------------------
+### Automobiles:
+| Action | Method | URL |
+|---|---|---|
 | List automobiles | GET | http://localhost:8100/api/automobile/ |
 | Create a automobile | POST | http://localhost:8100/api/automobile/ |
 | Get a specific automobile | GET | http://localhost:8100/api/automobile/:vin/ |
@@ -163,7 +164,7 @@ Automobiles:
 
 JSON body to send data:
 
-Create an automobile (SEND THIS JSON BODY):
+Create an automobile:
 ```
 {
   "color": "red",
@@ -172,7 +173,7 @@ Create an automobile (SEND THIS JSON BODY):
   "model_id": 1
 }
 ```
-Update an automobile (SEND THIS JSON BODY): *Vehicle manufacturer can not be changed after creation
+Update an automobile: <em>Vehicle manufacturer can not be changed after creation</em>
 ```
 {
   "color": "red",
@@ -180,7 +181,7 @@ Update an automobile (SEND THIS JSON BODY): *Vehicle manufacturer can not be cha
   "sold": true
 }
 ```
-Return value for details on a specific automobile: *Note - VINs are used in the url for automobiles not IDs
+View a specific automobile: <em>Vehicle URLs reference by VIN not ID</em>
 ```
 {
   "href": "/api/automobiles/1C3CC5FB2AN120174/",
@@ -202,7 +203,7 @@ Return value for details on a specific automobile: *Note - VINs are used in the 
   "sold": false
 }
 ```
-Return value for a list automobiles:
+List all automobiles:
 ```
 {
   "autos": [
@@ -238,13 +239,13 @@ Salesperson is comprised of 3 attributes - the salesperson's first name, last na
 Customer is comprised of 4 attributes - the customer's first name, last name, address, and phone number.
 Sale is comprised of 4 attributes, the sale price, as well as foreign-key relationships to automobile, salesperson, and customer.
 Creating a new sale will require the existence of all 3 foreign-keys main models within the database.
-## Accessing Endpoints to Send and View Data - Access through Insomnia:
+# Endpoints
 ### Sale:
-| Action | Method | URL
-| ----------- | ----------- | ----------- |
+| Action | Method | URL |
+|---|---|---|
 | List sales | GET | http://localhost:8090/api/sales/
 | Create a sale | POST | http://localhost:8090/api/sales/
-Create a sale (SEND THIS JSON BODY):
+Create a sale:
 ```
 {
   "price": "123456",
@@ -253,7 +254,8 @@ Create a sale (SEND THIS JSON BODY):
   "customer": 6
 }
 ```
-Getting a list of sales:
+
+List all sales:
 ```
 {
   "sales": [
@@ -278,12 +280,13 @@ Getting a list of sales:
       "id": 1
     }]}
 ```
-### Salespeople
-| Action | Method | URL
-| ----------- | ----------- | ----------- |
+### Salespeople:
+| Action | Method | URL |
+|---|---|---|
 | List salespeople | GET |   http://localhost:8090/api/salespeople/
 | Create a salesperson | POST | http://localhost:8090/api/salespeople/
-Create a salesperson (SEND THIS JSON BODY):
+
+Create a salesperson:
 ```
 {
   "first_name": "Bobby",
@@ -291,7 +294,7 @@ Create a salesperson (SEND THIS JSON BODY):
   "employee_id": "45"
 }
 ```
-Getting a list of salespeople:
+List all salespeople:
 ```
 {
   "salespeople": [
@@ -302,12 +305,12 @@ Getting a list of salespeople:
     },
   ]}
 ```
-### Customers
-| Action | Method | URL
-| ----------- | ----------- | ----------- |
+### Customers:
+| Action | Method | URL |
+|---|---|---|
 | List customers | GET |   http://localhost:8090/api/customers/
 | Create a customer | POST | http://localhost:8090/api/customers/
-Create a customer (SEND THIS JSON BODY):
+Create a customer:
 ```
 {
   "first_name": "Bill",
@@ -316,7 +319,7 @@ Create a customer (SEND THIS JSON BODY):
   "phone_number": "123456789"
 }
 ```
-Getting a list of customers:
+List all customers:
 ```
 {
   "customers": [
