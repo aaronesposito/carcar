@@ -33,8 +33,34 @@ docker-compose up
 
 6. View the project in the browser: http://localhost:3000/
 
+# Design
+## Frontend Design
+**React** - The Limitless Automotive frontend is an SPA built on React using Bootstrap for styling. Routing is handled by react browser router rendering elements with data puilled from the Sales or Service API. State is handled per element with each handling its respective CRUD behavior dependent on it's UI features. The current state of the frontend of the project represents the MVP of the deliverable. Continued development will include structure overhaul to reflect better organization of component vs page elements, and state store or Redux implementation for more robust state management and request handling.
 
-## Design
+**Frontend URI** - [http://localhost:3000/](http://localhost:3000/)
+
+| Element           | URL Slug              |
+| ----------------- | --------------------- |
+| Main Page         | /                     |
+| Manufacturer List | manufacturers/        |
+| Manufacturer Form | manufacturers/create/ |
+| Model List        | models/               |
+| Model Form        | models/create/        |
+| Automobile List   | automobiles/          |
+| Automobile Form   | automobiles/create/   |
+| Technician List   | technicians/          |
+| Appointment List  | technicians/create/   |
+| Appointment Form  | appointments/         |
+| Service History   | appointments/create/  |
+| Salesperson Form  | appointments/history/ |
+| Salespeople List  | salespeople/create/   |
+| Customer Form     | salespeople/          |
+| Customer List     | customers/create/     |
+| Sales Form        | customers/            |
+| Sales List        | sales/create/         |
+| Sales History     | sales/                |
+
+## API Design
 
 Limitless Automotive is made up of 3 microservices
 
@@ -156,11 +182,11 @@ Our service and sales domains work together with our inventory domain to make ev
 How this all starts is at our inventory domain. We keep a record of automobiles that are available at the dealership or have been sold by the dealership. Our sales and service microservices pull vehicle information from the inventory service, using a **poller**, which talks to the inventory domain to keep track of autmobiles available for sale and automobiles that have been sold by the dealership.
 
 
-# API Endpoints
+## API Endpoints
 
-## Inventory:
+### Inventory API:
 
-### Manufacturers:
+**Manufacturers**:
 
 | Action                         | Method | URL                                                                                          |
 | ------------------------------ | ------ | -------------------------------------------------------------------------------------------- |
@@ -204,7 +230,7 @@ How this all starts is at our inventory domain. We keep a record of automobiles 
   ]
 }
 ```
-### Vehicle Models:
+**Vehicle Models**:
 
 | Action                     | Method | URL                                                                            |
 | -------------------------- | ------ | ------------------------------------------------------------------------------ |
@@ -265,7 +291,7 @@ How this all starts is at our inventory domain. We keep a record of automobiles 
 }
 ```
 
-### Automobiles:
+**Automobiles**:
 
 | Action                       | Method | URL                                                                                      |
 | ---------------------------- | ------ | ---------------------------------------------------------------------------------------- |
@@ -344,9 +370,9 @@ How this all starts is at our inventory domain. We keep a record of automobiles 
 }
 ```
 
-## Sales:
+### Sales API:
 
-### Sales:
+**Sales**:
 
 | Action        | Method | URL                                                                  |
 | ------------- | ------ | -------------------------------------------------------------------- |
@@ -389,7 +415,7 @@ How this all starts is at our inventory domain. We keep a record of automobiles 
     }]}
 ```
 
-### Salespeople:
+**Salespeople**:
 
 | Action               | Method | URL                                                                              |
 | -------------------- | ------ | -------------------------------------------------------------------------------- |
@@ -417,7 +443,7 @@ How this all starts is at our inventory domain. We keep a record of automobiles 
   ]}
 ```
 
-### Customers:
+**Customers:**
 
 | Action            | Method | URL                                                                          |
 | ----------------- | ------ | ---------------------------------------------------------------------------- |
