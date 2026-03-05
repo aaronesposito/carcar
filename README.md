@@ -35,7 +35,7 @@ docker-compose up
 
 # Design
 ## Frontend Design
-**React** - The Limitless Automotive frontend is an SPA built on React using Bootstrap for styling. Routing is handled by react browser router rendering elements with data puilled from the Sales or Service API. State is handled per element with each handling its respective CRUD behavior dependent on it's UI features. The current state of the frontend of the project represents the MVP of the deliverable. Continued development will include structure overhaul to reflect better organization of component vs page elements, and state store or Redux implementation for more robust state management and request handling.
+**React** - The Limitless Automotive frontend is an SPA built on React using Bootstrap for styling. Routing is handled by react browser router rendering elements with data pulled from the Sales or Service API. State is handled per element with each handling its respective CRUD behavior dependent on its UI features. The current state of the frontend of the project represents the MVP of the deliverable. Continued development will include structure overhaul to reflect better organization of component vs page elements, and state store or Redux implementation for more robust state management and request handling.
 
 **Frontend URI** - [http://localhost:3000/](http://localhost:3000/)
 
